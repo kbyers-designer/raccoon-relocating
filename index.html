@@ -401,8 +401,7 @@ color: #2aaa99;
 margin-right: 0.4rem;
 }
 
-/* ANIMATIONS */
-.fade-in {
+.fade-in-disabled {
 opacity: 0;
 transform: translateY(14px);
 transition: opacity 0.45s ease, transform 0.45s ease;
@@ -430,13 +429,13 @@ transition: opacity 0.45s ease, transform 0.45s ease;
     <span class="brand-tag">Wildlife &nbsp;/&nbsp; Texas &nbsp;/&nbsp; Data</span>
   </div>
 
-  <div class="header fade-in">
+  <div class="header">
     <div class="eyebrow">Raccoon Relocation</div>
     <h1 class="headline">What People Think<br>vs. <em>What Actually Happens</em></h1>
     <p class="subhead">Trap it. Drive it somewhere nice. Problem solved. Except none of that is true.</p>
   </div>
 
-  <div class="comparison-wrap fade-in">
+  <div class="comparison-wrap">
     <div class="col-heads">
       <div class="col-head myth">✨ What People Think</div>
       <div class="col-head-vs">vs</div>
@@ -526,7 +525,7 @@ transition: opacity 0.45s ease, transform 0.45s ease;
 
   <!-- SURVIVAL BAR -->
 
-  <div class="survival-section fade-in">
+  <div class="survival-section">
     <div class="survival-title">Long-term survival rate of relocated raccoons</div>
     <div class="survival-bar-wrap" id="survival-bar">
       <div class="survival-bar-fill" id="bar-fill">
@@ -551,7 +550,7 @@ transition: opacity 0.45s ease, transform 0.45s ease;
 
   <!-- VACUUM EFFECT -->
 
-  <div class="vacuum-section fade-in">
+  <div class="vacuum-section">
     <div class="vacuum-title">The Vacuum Effect — Why It Never Works</div>
     <div class="vacuum-steps">
       <div class="vacuum-step">
@@ -583,7 +582,7 @@ transition: opacity 0.45s ease, transform 0.45s ease;
 
   <!-- STATS -->
 
-  <div class="stat-row fade-in">
+  <div class="stat-row">
     <div class="stat-card">
       <div class="stat-num red">18%</div>
       <div class="stat-lbl">long-term survival after relocation</div>
@@ -600,7 +599,7 @@ transition: opacity 0.45s ease, transform 0.45s ease;
 
   <!-- PULL QUOTE -->
 
-  <div class="pull-quote fade-in">
+  <div class="pull-quote">
     <strong>The bottom line:</strong> You are not solving a problem. You are cycling through animals until you run out of patience or marshmallow bait. The raccoon does not need to be relocated. The misinformation does.
   </div>
 
@@ -634,6 +633,8 @@ barObserver.unobserve(entry.target);
 }, { threshold: 0.3 });
 
 barObserver.observe(document.getElementById(‘survival-bar’));
+// Fallback: animate bar after 500ms regardless
+setTimeout(() => document.getElementById(‘bar-fill’).classList.add(‘animated’), 500);
 </script>
 
 </body>
