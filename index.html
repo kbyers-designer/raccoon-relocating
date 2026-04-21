@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raccoon Relocation: What People Think vs. What Actually Happens | WildTomorrow</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+background: #f5f0e8;
+color: #1c1a16;
+font-family: ‘Source Serif 4’, Georgia, serif;
+min-height: 100vh;
+}
+
+body::after {
+content: ‘’;
+position: fixed;
+inset: 0;
+background-image: url(“data:image/svg+xml,%3Csvg viewBox=‘0 0 200 200’ xmlns=‘http://www.w3.org/2000/svg’%3E%3Cfilter id=‘n’%3E%3CfeTurbulence type=‘fractalNoise’ baseFrequency=‘0.85’ numOctaves=‘4’ stitchTiles=‘stitch’/%3E%3C/filter%3E%3Crect width=‘100%25’ height=‘100%25’ filter=‘url(%23n)’ opacity=‘0.025’/%3E%3C/svg%3E”);
+pointer-events: none;
+z-index: 999;
+}
+
+.page {
+max-width: 920px;
+margin: 0 auto;
+padding: 2.5rem 1.5rem 3.5rem;
+}
+
+/* ── MASTHEAD ── */
+.masthead {
+display: flex;
+align-items: center;
+justify-content: space-between;
+border-bottom: 1px solid rgba(28,26,22,0.12);
+padding-bottom: 1.1rem;
+margin-bottom: 2.5rem;
+}
+
+.brand {
+display: flex;
+align-items: center;
+gap: 0.6rem;
+}
+
+.brand-pip {
+width: 7px;
+height: 28px;
+background: #2aaa99;
+}
+
+.brand-name {
+font-family: ‘Oswald’, sans-serif;
+font-size: 0.68rem;
+letter-spacing: 0.22em;
+text-transform: uppercase;
+color: #2aaa99;
+}
+
+.brand-tag {
+font-family: ‘Oswald’, sans-serif;
+font-size: 0.62rem;
+letter-spacing: 0.14em;
+text-transform: uppercase;
+color: rgba(28,26,22,0.35);
+}
+
+/* ── HEADER ── */
+.header {
+text-align: center;
+margin-bottom: 2.75rem;
+}
+
+.eyebrow {
+font-family: ‘Oswald’, sans-serif;
+font-size: 0.66rem;
+letter-spacing: 0.28em;
+text-transform: uppercase;
+color: #e74c3c;
+margin-bottom: 0.65rem;
+}
+
+.headline {
+font-family: ‘Oswald’, sans-serif;
+font-size: clamp(1.7rem, 4.5vw, 2.6rem);
+font-weight: 700;
+line-height: 1.08;
+margin-bottom: 0.8rem;
+color: #1c1a16;
+}
+
+.headline em {
+color: #2aaa99;
+font-style: normal;
+}
+
+.subhead {
+font-size: 0.92rem;
+color: rgba(28,26,22,0.55);
+font-style: italic;
+line-height: 1.6;
+}
+
+/* ── COLUMN LABELS ── */
+.col-labels {
+display: grid;
+grid-template-columns: 1fr 52px 1fr;
+gap: 0;
+margin-bottom: 1rem;
+}
+
+.col-label {
+text-align: center;
+padding: 0.65rem 1rem;
+border-radius: 4px 4px 0 0;
+font-family: ‘Oswald’, sans-serif;
+font-size: 0.72rem;
+letter-spacing: 0.18em;
+text-transform: uppercase;
+font-weight: 600;
+}
+
+.col-label.myth {
+background: rgba(212,160,23,0.12);
+color: #d4a017;
+border: 1px solid rgba(212,160,23,0.2);
+border-bottom: none;
+}
+
+.col-label.reality {
+background: rgba(192,57,43,0.12);
+color: #e74c3c;
+border: 1px solid rgba(192,57,43,0.2);
+border-bottom: none;
+}
+
+.col-label-vs {
+display: flex;
+align-items: flex-end;
+justify-content: center;
+padding-bottom: 0.5rem;
+font-family: ‘Oswald’, sans-serif;
+font-size: 0.6rem;
+letter-spacing: 0.15em;
+color: rgba(28,26,22,0.2);
+}
+
+/* ── COMPARISON GRID ── */
+.comparison {
+display: grid;
+grid-template-columns: 1fr 52px 1fr;
+gap: 0 0;
+}
+
+/* each row */
+.row-myth,
+.row-reality {
+display: contents;
+}
+
+.cell {
+padding: 1.1rem 1.25rem;
+border: 1px solid rgba(28,26,22,0.1);
+margin-bottom: -1px; /* collapse borders */
+transition: background 0.2s ease;
+cursor: default;
+}
+
+.cell:hover { background: rgba(28,26,22,0.04); }
+
+.cell.myth-cell {
+border-color: rgba(212,160,23,0.14);
+background: rgba(212,160,23,0.04);
+}
+
+.cell.myth-cell:hover { background: rgba(212,160,23,0.08); }
+
+.cell.reality-cell {
+border-color: rgba(192,57,43,0.14);
+background: rgba(192,57,43,0.04);
+}
+
+.cell.reality-cell:hover { background: rgba(192,57,43,0.08); }
+
+.cell-icon {
+font-size: 1.5rem;
+margin-bottom: 0.45rem;
+display: block;
+}
+
+.cell-label {
+font-family: ‘Oswald’, sans-serif;
+font-size: 0.68rem;
+letter-spacing: 0.14em;
+text-transform: uppercase;
+margin-bottom: 0.35rem;
+}
+
+.cell.myth-cell .cell-label { color: rgba(212,160,23,0.7); }
+.cell.reality-cell .cell-label { color: rgba(231,76,60,0.7); }
+
+.cell-text {
+font-size: 0.88rem;
+line-height: 1.6;
+color: rgba(28,26,22,0.85);
+}
+
+.cell-stat {
+display: inline-block;
+font-family: ‘Oswald’, sans-serif;
+font-size: 1.5rem;
+font-weight: 700;
+line-height: 1;
+margin-top: 0.5rem;
+}
+
+.cell.myth-cell .cell-stat { color: #d4a017; }
+.cell.reality-cell .cell-stat { color: #e74c3c; }
+
+/* divider column */
+.divider-cell {
+display: flex;
+align-items: center;
+justify-content: center;
+border-left: 1px solid rgba(255,255,255,0.05);
+border-right: 1px solid rgba(255,255,255,0.05);
+color: rgba(28,26,22,0.12);
+font-family: ‘Oswald’, sans-serif;
+font-size: 0.58rem;
+letter-spacing: 0.1em;
+writing-mode: vertical-rl;
+text-transform: uppercase;
+padding: 0.5rem 0;
+}
+
+/* ── SURVIVAL BAR ── */
+.survival-section {
+margin: 2.5rem 0 2rem;
+}
+
+.survival-title {
+font-family: ‘Oswald’, sans-serif;
+font-size: 0.68rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: rgba(28,26,22,0.4);
+text-align: center;
+margin-bottom: 1.25rem;
+}
+
+.survival-bar-wrap {
+position: relative;
+height: 52px;
+background: rgba(28,26,22,0.04);
+border-radius: 4px;
+overflow: hidden;
+border: 1px solid rgba(28,26,22,0.1);
+}
+
+.survival-bar-fill {
+position: absolute;
+left: 0; top: 0; bottom: 0;
+width: 0;
+background: #2aaa99;
+border-radius: 3px 0 0 3px;
+transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+display: flex;
+align-items: center;
+padding-left: 1rem;
+}
+
+.survival-bar-fill.animated { width: 18%; }
+
+.survival-bar-label-inside {
+font-family: ‘Oswald’, sans-serif;
+font-size: 0.75rem;
+font-weight: 700;
+color: #1c1a16;
+white-space: nowrap;
+opacity: 0;
+transition: opacity 0.4s ease 0.8s;
+}
+
+.survival-bar-fill.animated .survival-bar-label-inside { opacity: 1; }
+
+.survival-bar-dead {
+position: absolute;
+right: 0; top: 0; bottom: 0;
+left: 18%;
+display: flex;
+align-items: center;
+justify-content: flex-end;
+padding-right: 1rem;
+}
+
+.survival-bar-dead-label {
+font-family: ‘Oswald’, sans-serif;
+font-size: 0.75rem;
+color: rgba(231,76,60,0.7);
+white-space: nowrap;
+}
+
+.survival-bar-dead-pct {
+font-family: ‘Oswald’, sans-serif;
+font-size: 1.1rem;
+font-weight: 700;
+color: #e74c3c;
+margin-left: 0.4rem;
+}
+
+.survival-legend {
+display: flex;
+justify-content: center;
+gap: 2rem;
+margin-top: 0.75rem;
+}
+
+.survival-legend-item {
+display: flex;
+align-items: center;
+gap: 0.5rem;
+font-size: 0.75rem;
+color: rgba(28,26,22,0.5);
+}
+
+.legend-swatch {
+width: 12px;
+height: 12px;
+border-radius: 2px;
+}
+
+/* ── VACUUM EFFECT ── */
+.vacuum-section {
+background: rgba(28,26,22,0.04);
+border: 1px solid rgba(28,26,22,0.1);
+border-radius: 6px;
+padding: 1.5rem;
+margin: 0 0 2rem;
+}
+
+.vacuum-title {
+font-family: ‘Oswald’, sans-serif;
+font-size: 0.85rem;
+font-weight: 700;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+color: #1c1a16;
+margin-bottom: 1.1rem;
+display: flex;
+align-items: center;
+gap: 0.6rem;
+}
+
+.vacuum-title::before {
+content: ‘’;
+display: block;
+width: 20px;
+height: 2px;
+background: #2aaa99;
+flex-shrink: 0;
+}
+
+.vacuum-steps {
+display: grid;
+grid-template-columns: repeat(5, 1fr);
+gap: 0;
+position: relative;
+}
+
+@media (max-width: 580px) {
+.vacuum-steps { grid-template-columns: 1fr; }
+.vacuum-arrow { display: none; }
+}
+
+.vacuum-step {
+text-align: center;
+padding: 0.9rem 0.5rem;
+position: relative;
+}
+
+.vacuum-step-icon {
+font-size: 1.6rem;
+display: block;
+margin-bottom: 0.4rem;
+}
+
+.vacuum-step-text {
+font-size: 0.74rem;
+line-height: 1.45;
+color: rgba(28,26,22,0.65);
+}
+
+.vacuum-step-text strong {
+display: block;
+font-family: ‘Oswald’, sans-serif;
+font-size: 0.7rem;
+letter-spacing: 0.08em;
+text-transform: uppercase;
+color: #1c1a16;
+margin-bottom: 0.2rem;
+font-weight: 600;
+}
+
+.vacuum-arrow {
+display: flex;
+align-items: center;
+justify-content: center;
+color: rgba(28,26,22,0.15);
+font-size: 1rem;
+padding-top: 1.2rem;
+}
+
+.vacuum-step:last-child .vacuum-step-icon { color: #e74c3c; }
+
+/* ── BOTTOM STAT ROW ── */
+.stat-row {
+display: grid;
+grid-template-columns: repeat(3,1fr);
+gap: 0.75rem;
+margin-bottom: 1.75rem;
+}
+
+@media (max-width: 480px) { .stat-row { grid-template-columns: 1fr 1fr; } }
+
+.stat-card {
+background: rgba(28,26,22,0.04);
+border: 1px solid rgba(28,26,22,0.1);
+border-radius: 5px;
+padding: 1rem;
+text-align: center;
+}
+
+.stat-num {
+font-family: ‘Oswald’, sans-serif;
+font-size: 1.85rem;
+font-weight: 700;
+line-height: 1;
+margin-bottom: 0.3rem;
+}
+
+.stat-num.teal { color: #2aaa99; }
+.stat-num.red  { color: #e74c3c; }
+.stat-num.gold { color: #d4a017; }
+
+.stat-lbl {
+font-size: 0.7rem;
+color: rgba(28,26,22,0.45);
+line-height: 1.4;
+text-transform: uppercase;
+letter-spacing: 0.07em;
+}
+
+/* ── PULL QUOTE ── */
+.pull-quote {
+border-left: 3px solid #e74c3c;
+background: rgba(192,57,43,0.08);
+padding: 1rem 1.4rem;
+border-radius: 0 4px 4px 0;
+margin-bottom: 1.75rem;
+font-style: italic;
+font-size: 1rem;
+line-height: 1.65;
+color: rgba(28,26,22,0.82);
+}
+
+.pull-quote strong {
+font-style: normal;
+color: #e74c3c;
+}
+
+/* ── SOURCE ── */
+.source {
+border-top: 1px solid rgba(255,255,255,0.07);
+padding-top: 1.1rem;
+font-size: 0.7rem;
+color: rgba(28,26,22,0.35);
+line-height: 1.6;
+}
+
+.source-tag {
+font-family: ‘Oswald’, sans-serif;
+letter-spacing: 0.12em;
+text-transform: uppercase;
+color: #2aaa99;
+margin-right: 0.4rem;
+}
+
+/* ── ANIMATE ON SCROLL ── */
+.animate-in {
+opacity: 0;
+transform: translateY(16px);
+transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.animate-in.visible {
+opacity: 1;
+transform: translateY(0);
+}
+
+@media (max-width: 600px) {
+.col-labels,
+.comparison {
+grid-template-columns: 1fr;
+}
+.col-label-vs,
+.divider-cell { display: none; }
+.col-label { border-radius: 4px; border-bottom: 1px solid; margin-bottom: 0.25rem; }
+.cell { border-radius: 4px; margin-bottom: 0.5rem; }
+}
+</style>
+
+</head>
+<body>
+<div class="page">
+
+  <!-- MASTHEAD -->
+
+  <div class="masthead">
+    <div class="brand">
+      <div class="brand-pip"></div>
+      <span class="brand-name">WildTomorrow</span>
+    </div>
+    <span class="brand-tag">Wildlife &nbsp;/&nbsp; Texas &nbsp;/&nbsp; Data</span>
+  </div>
+
+  <!-- HEADER -->
+
+  <div class="header animate-in">
+    <div class="eyebrow">Raccoon Relocation</div>
+    <h1 class="headline">What People Think<br>vs. <em>What Actually Happens</em></h1>
+    <p class="subhead">Trap it. Drive it somewhere nice. Problem solved. Except none of that is true.</p>
+  </div>
+
+  <!-- COLUMN LABELS -->
+
+  <div class="col-labels animate-in">
+    <div class="col-label myth">✨ What People Think</div>
+    <div class="col-label-vs">vs</div>
+    <div class="col-label reality">💀 What Actually Happens</div>
+  </div>
+
+  <!-- COMPARISON ROWS -->
+
+  <div class="comparison animate-in">
+
+```
+<!-- Row 1: The act -->
+<div class="cell myth-cell">
+  <span class="cell-icon">🚗</span>
+  <div class="cell-label">The Action</div>
+  <div class="cell-text">You trap the raccoon humanely, drive it to a nice wooded area, and release it. It scurries off happily into a better life.</div>
+</div>
+<div class="divider-cell">reality</div>
+<div class="cell reality-cell">
+  <span class="cell-icon">😰</span>
+  <div class="cell-label">The Action</div>
+  <div class="cell-text">You trap a stressed, disoriented animal, possibly separating a mother from kits. It is released into unfamiliar territory with no established food sources, shelter, or safety knowledge.</div>
+</div>
+
+<!-- Row 2: Survival -->
+<div class="cell myth-cell">
+  <span class="cell-icon">🌲</span>
+  <div class="cell-label">Survival</div>
+  <div class="cell-text">The raccoon adapts quickly. It's a wild animal — it knows what to do. Nature takes care of its own.</div>
+  <div class="cell-stat">~100%</div>
+</div>
+<div class="divider-cell">reality</div>
+<div class="cell reality-cell">
+  <span class="cell-icon">📉</span>
+  <div class="cell-label">Survival</div>
+  <div class="cell-text">GPS studies spanning 15 years show only 18% of relocated raccoons survive long-term. Half are dead within 3 months. Up to 75% are dead within a year.</div>
+  <div class="cell-stat">18%</div>
+</div>
+
+<!-- Row 3: Territory -->
+<div class="cell myth-cell">
+  <span class="cell-icon">🗺️</span>
+  <div class="cell-label">New Territory</div>
+  <div class="cell-text">It finds a peaceful patch of woods, claims it as home, and lives out its days far from human conflict.</div>
+</div>
+<div class="divider-cell">reality</div>
+<div class="cell reality-cell">
+  <span class="cell-icon">⚔️</span>
+  <div class="cell-label">New Territory</div>
+  <div class="cell-text">That territory already has raccoons. Resident animals attack or drive out newcomers. Studies show relocated raccoons flee the release site within hours to days, often ending up in another human neighborhood.</div>
+</div>
+
+<!-- Row 4: Your problem -->
+<div class="cell myth-cell">
+  <span class="cell-icon">✅</span>
+  <div class="cell-label">Your Problem</div>
+  <div class="cell-text">Solved. The raccoon is gone. You can move on. Problem eliminated humanely.</div>
+</div>
+<div class="divider-cell">reality</div>
+<div class="cell reality-cell">
+  <span class="cell-icon">🔄</span>
+  <div class="cell-label">Your Problem</div>
+  <div class="cell-text">Not solved. The food source, shelter, or attractant is still there. A new raccoon — often within days — moves into the vacuum. You will do this forever unless you address the actual cause.</div>
+</div>
+
+<!-- Row 5: Legal -->
+<div class="cell myth-cell">
+  <span class="cell-icon">👍</span>
+  <div class="cell-label">Legal Status</div>
+  <div class="cell-text">It's a live trap and a release. No harm done. Surely this is perfectly fine and legal.</div>
+</div>
+<div class="divider-cell">reality</div>
+<div class="cell reality-cell">
+  <span class="cell-icon">⚖️</span>
+  <div class="cell-label">Legal Status</div>
+  <div class="cell-text">In Texas, transporting a live raccoon without TPWD authorization is a Class C misdemeanor under the Rabies Control and Eradication Administrative Code. "I found it on YouTube" is not a defense.</div>
+</div>
+```
+
+  </div>
+
+  <!-- SURVIVAL BAR -->
+
+  <div class="survival-section animate-in">
+    <div class="survival-title">Long-term survival rate of relocated raccoons</div>
+    <div class="survival-bar-wrap" id="survival-bar">
+      <div class="survival-bar-fill" id="bar-fill">
+        <span class="survival-bar-label-inside">18% survive</span>
+      </div>
+      <div class="survival-bar-dead">
+        <span class="survival-bar-dead-label">die within months</span>
+        <span class="survival-bar-dead-pct">82%</span>
+      </div>
+    </div>
+    <div class="survival-legend">
+      <div class="survival-legend-item">
+        <div class="legend-swatch" style="background:#2aaa99"></div>
+        Long-term survivors (18%)
+      </div>
+      <div class="survival-legend-item">
+        <div class="legend-swatch" style="background:#e74c3c"></div>
+        Dead within months (82%)
+      </div>
+    </div>
+  </div>
+
+  <!-- VACUUM EFFECT -->
+
+  <div class="vacuum-section animate-in">
+    <div class="vacuum-title">The Vacuum Effect</div>
+    <div class="vacuum-steps">
+      <div class="vacuum-step">
+        <span class="vacuum-step-icon">🍽️</span>
+        <div class="vacuum-step-text"><strong>Attractant remains</strong>Outdoor food, garbage, shelter still present</div>
+      </div>
+      <div class="vacuum-arrow">→</div>
+      <div class="vacuum-step">
+        <span class="vacuum-step-icon">🦝</span>
+        <div class="vacuum-step-text"><strong>Raccoon removed</strong>Territory briefly vacant</div>
+      </div>
+      <div class="vacuum-arrow">→</div>
+      <div class="vacuum-step">
+        <span class="vacuum-step-icon">👀</span>
+        <div class="vacuum-step-text"><strong>New animal scouts</strong>Neighboring raccoons detect open territory</div>
+      </div>
+      <div class="vacuum-arrow">→</div>
+      <div class="vacuum-step">
+        <span class="vacuum-step-icon">🏠</span>
+        <div class="vacuum-step-text"><strong>Moves in</strong>Often within days of removal</div>
+      </div>
+      <div class="vacuum-arrow">→</div>
+      <div class="vacuum-step">
+        <span class="vacuum-step-icon">🔁</span>
+        <div class="vacuum-step-text"><strong>Repeat forever</strong>Until attractant is addressed</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+
+  <div class="stat-row animate-in">
+    <div class="stat-card">
+      <div class="stat-num red">18%</div>
+      <div class="stat-lbl">long-term survival rate for relocated raccoons</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num teal">90%+</div>
+      <div class="stat-lbl">of wildlife conflicts resolvable without removing the animal</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num gold">C Misd.</div>
+      <div class="stat-lbl">penalty for transporting raccoons without TPWD authorization in Texas</div>
+    </div>
+  </div>
+
+  <!-- PULL QUOTE -->
+
+  <div class="pull-quote animate-in">
+    <strong>The bottom line:</strong> You are not solving a problem. You are cycling through animals until you run out of patience or marshmallow bait. The raccoon does not need to be relocated. The misinformation does.
+  </div>
+
+  <!-- SOURCE -->
+
+  <div class="source">
+    <span class="source-tag">Sources</span>
+    Animal Help Now (2021), 15 years GPS translocation data. Adams, Hadidian & Flyger, <em>Animal Welfare</em> (2004). Mosillo et al., <em>Journal of Wildlife Management</em> (1999). Texas DSHS Rabies Control & Eradication Administrative Code. TPWD Furbearing Animal Regulations. Wildlife Center of Virginia. Visualization by Katie Byers | WildTomorrow.
+  </div>
+
+</div>
+
+<script>
+  // Animate elements into view on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.animate-in').forEach(el => observer.observe(el));
+
+  // Animate survival bar when it enters view
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        setTimeout(() => document.getElementById('bar-fill').classList.add('animated'), 200);
+        barObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  barObserver.observe(document.getElementById('survival-bar'));
+</script>
+
+</body>
+</html>
